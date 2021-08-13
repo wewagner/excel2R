@@ -1,7 +1,7 @@
 # excel2R
 Reading Unclean Excel Sheets into R
 
-## Data Wrangling Reading Excel Sheets with Multiple Headers and Changing into Long Time Series
+## Data Wrangling Reading Excel Sheets with Multiple Headers and Changing into Time Series (Wide Format)
 This code is using the **tidyxl** library in R to read Excel sheet with multiple headers and simultaneously change the format of the sheet to country/year rows. 
 
 The example shows how to read and rearrange a messy excel sheet of US FDI data by industry into a country/year format. Exemplary data here: https://www.bea.gov/international/di1usdbal
