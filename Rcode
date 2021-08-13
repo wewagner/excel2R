@@ -1,0 +1,35 @@
+
+```
+## Messy excel wrangling with tidyxl & unpivotr: 
+
+#setwd()
+
+library(tidyxl)
+library(tidyverse)
+library("unpivotr")
+#install.packages('Rcpp') # Install if a Rcpp error returns when using the function
+
+d <- tidyxl::xlsx_cells("messydata.xlsx")
+head(d)
+
+cleanData <- function(d){
+  final <- d %>%
+    select(row, col, data_type, numeric, character) %>%
+    behead('N', industryFDI) %>%  # Extract column headers for later columns
+    behead('N', year) %>%
+    behead('W', country) %>% # country names as row header
+    select(industryFDI:country, numeric) %>% # all vars are numeric
+    pivot_wider(names_from = industryFDI, values_from = numeric) # arrange data in long with pivot_longer() or pivot_wider()
+    # Here we want to have the industry names as columns and not rows, remove pivot_wider and you will have industryFDI as a column
+    return(final)
+}
+
+d_clean <- cleanData(d)
+head(d_clean)
+
+## NOTES
+
+# For Long to Wide:
+# Using this function we need only identify which column contains our variable names, 
+# names_from and which contains the data we wish to rearrange, values_from.
+```
